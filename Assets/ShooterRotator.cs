@@ -16,6 +16,8 @@ public class ShooterRotator : MonoBehaviour
     // 수직방향 회전 속도
     public float horizontalRotateSpeed = 360f;
 
+    public BallShooter ballShooter;
+
     public void Update()
     {
         switch (state)
@@ -44,13 +46,19 @@ public class ShooterRotator : MonoBehaviour
                 else if (Input.GetButtonUp("Fire1"))
                 {
                     state = RotateState.Ready;
+                    ballShooter.enabled = true;
                 }
                 break;
-            case RotateState.Ready:
-                break;
-            default:
+            case RotateState.Ready:                
                 break;
         }
-        
+    }
+
+    private void OnEnable()
+    {
+        //identity = 0,0,0 회전각도
+        transform.rotation = Quaternion.identity;
+        state = RotateState.Idle;
+        ballShooter.enabled = false;
     }
 }
