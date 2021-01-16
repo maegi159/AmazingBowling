@@ -20,6 +20,7 @@ public class Prop : MonoBehaviour
 
             Destroy(instance.gameObject, instance.duration);
             // 프롭을 직접 파괴하고 재생성하는 것이 아닌 잠시 off 상태로 놔둠
+            GameManager.instance.AddScore(score);
             gameObject.SetActive(false);
         }
     }
